@@ -22,6 +22,7 @@ class ReactNativeActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         val list = mutableListOf<ReactPackage>()
         list.add(MainReactPackage()) // 默认
         list.add(CodePush(BuildConfig.CODEPUSH_KEY, this, BuildConfig.DEBUG)) // codePush热更新
+        list.add(CommonPackage()) // 自定义Package
 
         mReactRootView = ReactRootView(this)
         mReactInstanceManager = ReactInstanceManager.builder()
