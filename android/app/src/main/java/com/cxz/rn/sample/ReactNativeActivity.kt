@@ -10,6 +10,7 @@ import com.facebook.react.common.LifecycleState
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler
 import com.facebook.react.shell.MainReactPackage
 import com.microsoft.codepush.react.CodePush
+import io.realm.react.RealmReactPackage
 
 class ReactNativeActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
 
@@ -23,6 +24,7 @@ class ReactNativeActivity : AppCompatActivity(), DefaultHardwareBackBtnHandler {
         list.add(MainReactPackage()) // 默认
         list.add(CodePush(BuildConfig.CODEPUSH_KEY, this, BuildConfig.DEBUG)) // codePush热更新
         list.add(CommonPackage()) // 自定义Package
+        list.add(RealmReactPackage()) // Realm 数据库
 
         mReactRootView = ReactRootView(this)
         mReactInstanceManager = ReactInstanceManager.builder()

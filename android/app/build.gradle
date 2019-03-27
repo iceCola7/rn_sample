@@ -5,6 +5,16 @@ apply plugin: 'kotlin-android-extensions'
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
+/**
+ * Set this to true to create two separate APKs instead of one:
+ *   - An APK that only works on ARM devices
+ *   - An APK that only works on x86 devices
+ * The advantage is the size of the APK is reduced by about 4MB.
+ * Upload all the APKs to the Play Store and people will download
+ * the correct one based on the CPU architecture of their device.
+ */
+def enableSeparateBuildPerCPUArchitecture = false
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
@@ -14,6 +24,21 @@ android {
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        packagingOptions {
+            exclude '/lib/mips64/**'
+            exclude '/lib/arm64-v8a/**'
+            exclude '/lib/x86_64/**'
+        }
+
+    }
+    splits {
+        abi {
+            reset()
+            enable enableSeparateBuildPerCPUArchitecture
+            universalApk false  // If true, also generate a universal APK
+            include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
+        }
     }
     buildTypes {
         release {
@@ -47,5 +72,6 @@ dependencies {
     implementation "com.facebook.react:react-native:+" // From node_modules
 
     implementation project(':react-native-code-push')
+    implementation project(':realm')
 
 }
