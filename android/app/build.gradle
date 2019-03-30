@@ -5,6 +5,10 @@ apply plugin: 'kotlin-android-extensions'
 apply from: "../../node_modules/react-native/react.gradle"
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
+project.ext.react = [
+        entryFile: "index.js"
+]
+
 /**
  * Set this to true to create two separate APKs instead of one:
  *   - An APK that only works on ARM devices
