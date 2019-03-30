@@ -52,10 +52,10 @@ android {
             // 此处填写Production key
             buildConfigField "String", "CODEPUSH_KEY", '"HCrNbfB_RAQQIMbI2qZjxWQRcDwtf60a58b6-658c-48e0-8927-f94533affaa5"'
         }
-        releaseStaging {
-            // 此处填写Staging key
-            buildConfigField "String", "CODEPUSH_KEY", '"B9_pX8iuokLHjEZHwYp4MKNkmMAOf60a58b6-658c-48e0-8927-f94533affaa5"'
-        }
+//        releaseStaging {
+//            // 此处填写Staging key
+//            buildConfigField "String", "CODEPUSH_KEY", '"B9_pX8iuokLHjEZHwYp4MKNkmMAOf60a58b6-658c-48e0-8927-f94533affaa5"'
+//        }
         debug {
             minifyEnabled false
             // 此处填写Staging key
