@@ -9,7 +9,8 @@ import com.facebook.react.bridge.*
  * @date 2019/3/27
  * @desc
  */
-class CommonModule(private val reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class CommonModule(private val reactContext: ReactApplicationContext)
+    : ReactContextBaseJavaModule(reactContext) {
 
     override fun getName(): String {
         // 一定要有名字 RN代码要通过名字来调用该类的方法
@@ -17,7 +18,9 @@ class CommonModule(private val reactContext: ReactApplicationContext) : ReactCon
     }
 
     /**
-     * 方法不能返回值 因为被调用的原生代码是异步的 原生代码执行结束之后只能通过回调函数或者发送消息给RN
+     * 加上 @ReactMethod 注解是为了暴露给RN调用的方法；
+     *
+     * 方法不能返回值，因为被调用的原生代码是异步的，原生代码执行结束之后只能通过回调函数或者发送消息给RN
      */
     @ReactMethod
     fun rnCallNative(msg: String) {
