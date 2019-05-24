@@ -17,6 +17,11 @@ class CommonModule(private val reactContext: ReactApplicationContext)
         return "CommonModule"
     }
 
+    @ReactMethod
+    fun toast(msg: String) {
+        Toast.makeText(reactContext, msg, Toast.LENGTH_SHORT).show()
+    }
+
     /**
      * 加上 @ReactMethod 注解是为了暴露给RN调用的方法；
      *
