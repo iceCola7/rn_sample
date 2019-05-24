@@ -1,9 +1,9 @@
 import RealmUtil from './RealmUtil';
 
-const base_url = 'https://www.wanandroid.com'
+const base_url = global.base_url;
 
 function getFormData(params) {
-    let formData = new FormData()
+    let formData = new FormData();
     for (let key in params) {
         formData.append(key, params[key])
     }
@@ -11,8 +11,8 @@ function getFormData(params) {
 }
 
 function formatGetParams(params) {
-    if (params === '') return ''
-    let newParams = '?'
+    if (params === '') return '';
+    let newParams = '?';
     for (let key in params) {
         newParams = newParams + key + '=' + params[key] + '&'
     }
@@ -20,8 +20,8 @@ function formatGetParams(params) {
 }
 
 function formatPostParams(params) {
-    if (params === '') return ''
-    let newParams = ''
+    if (params === '') return '';
+    let newParams = '';
     for (let key in params) {
         newParams = newParams + key + '=' + params[key] + '&'
     }
@@ -30,14 +30,14 @@ function formatPostParams(params) {
 
 function request(method, url, params = '') {
 
-    let request_url = base_url + url
+    let request_url = base_url + url;
     if (url.startsWith('http://') || url.startsWith('https://')) {
         request_url = url
     }
 
     let config = {
         method: method
-    }
+    };
 
     if (params !== '') {
         if (method.toUpperCase() === "GET") {
@@ -47,7 +47,7 @@ function request(method, url, params = '') {
         }
     }
 
-    let contentType = 'application/json;charset=UTF-8'
+    let contentType = 'application/json;charset=UTF-8';
     if (method.toUpperCase() === 'POST') {
         contentType = 'application/x-www-form-urlencoded;charset=UTF-8'
     }
@@ -55,10 +55,10 @@ function request(method, url, params = '') {
     config['headers'] = {
         'Content-Type': contentType,
         'Cookie': RealmUtil.getCookie(),
-    }
+    };
 
-    console.log('请求链接', method, request_url)
-    console.log('请求参数', config)
+    console.log('请求链接', method, request_url);
+    console.log('请求参数', config);
 
     return new Promise((resole, reject) => {
         fetch(request_url, config)
@@ -67,7 +67,7 @@ function request(method, url, params = '') {
                 return res.json()
             })
             .then(json => {
-                console.log('请求成功', json)
+                console.log('请求成功', json);
                 if (!json.code ||
                     json.code === 200) {
                     resole(json)
@@ -76,7 +76,7 @@ function request(method, url, params = '') {
                 }
             })
             .catch(err => {
-                console.log('请求错误', JSON.stringify(err))
+                console.log('请求错误', JSON.stringify(err));
                 reject(err)
             })
     })
