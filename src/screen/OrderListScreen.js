@@ -1,6 +1,6 @@
 import React from "react";
 import {ActivityIndicator, Button, FlatList, RefreshControl, StyleSheet, Text, ToastAndroid, View} from "react-native";
-import net from '../utils/NetUtil'
+import net from '../utils/HttpUtil'
 import {format2YMD} from "../utils/DateUtil";
 
 export default class OrderListScreen extends React.Component {
@@ -24,10 +24,10 @@ export default class OrderListScreen extends React.Component {
 
     // 请求数据
     fetchData() {
-        net.get('/Order/GetOrderList', {})
+        net.get('/article/list/' + this.state.page + '/json', {})
             .then(res => {
-                let isEnd = res.Data.isEnd;
-                let list = res.Data.list;
+                let isEnd = res.data.over;
+                let list = res.data.datas;
 
                 let footer = 0;
                 if (isEnd) {
